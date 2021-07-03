@@ -57,8 +57,8 @@ def meta_test(network_name, dataset, num_epoch, batch_size, lr, momentum, wd):
 
     optimizer = optim.SGD(net.parameters(), lr=lr, momentum=momentum, weight_decay=wd)
 
-    model_dict = torch.load('./mlr_snet 1.pth')
-    mlr_snet.load_state_dict(model_dict)
+    net_path = torch.load('./mlr_snet 1.pth')
+    mlr_snet.load_state_dict(net_path)
 
     for epoch in range(num_epoch):
         train_correct = 0
@@ -76,7 +76,7 @@ def meta_test(network_name, dataset, num_epoch, batch_size, lr, momentum, wd):
 
             print('Second gamma is %.3f' % gamma)
 
-        if epoch==args.num_epoch // 3 * 2:
+        if epoch == args.num_epoch // 3 * 2:
             net_path = './mlr_snet 200.pth'
             
             model_dict = torch.load(net_path)
@@ -129,7 +129,7 @@ def meta_test(network_name, dataset, num_epoch, batch_size, lr, momentum, wd):
 
         if val_acc > best_val_accuracy:
             best_val_accuracy = val_acc
-            torch.save(net.state_dict(), model_loc)
+            # torch.save(net.state_dict(), model_loc)
 
         print('train_accuracy at epoch :{} is : {}'.format(epoch, train_acc))
         print('val_accuracy at epoch :{} is : {}'.format(epoch, val_acc))
