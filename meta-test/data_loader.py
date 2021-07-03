@@ -1,7 +1,7 @@
 import torch
 from torchvision import datasets, transforms
 
-data_loc = '../../data/'
+data_loc = '../data/'
 
 
 def data_loader(dataset_name, batch_size):
@@ -21,9 +21,9 @@ def cifar_10_data_loader(batch_size):
          transforms.Normalize((0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)), ])
     transform_test = transforms.Compose([transforms.ToTensor(), transforms.Normalize(
         (0.4914, 0.4822, 0.4465), (0.2023, 0.1994, 0.2010)), ])
-    dataset = datasets.CIFAR10(root=data_loc+'cifar10', train=True, download=True, transform=transform_train)
+    dataset = datasets.CIFAR10(root=data_loc, train=True, download=True, transform=transform_train)
     train_loader = torch.utils.data.DataLoader(dataset, shuffle=True, batch_size=batch_size, num_workers=0)
-    test_dataset = datasets.CIFAR10(root=data_loc+'cifar10', train=False, transform=transform_test)
+    test_dataset = datasets.CIFAR10(root=data_loc, train=False, transform=transform_test)
     test_loader = torch.utils.data.DataLoader(test_dataset, shuffle=False, batch_size=batch_size)
     return train_loader, test_loader
 
@@ -34,9 +34,9 @@ def cifar_100_data_loader(batch_size):
          transforms.Normalize((0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)), ])
     transform_test = transforms.Compose([transforms.ToTensor(), transforms.Normalize(
         (0.5071, 0.4867, 0.4408), (0.2675, 0.2565, 0.2761)), ])
-    dataset = datasets.CIFAR100(root=data_loc+'cifar100', train=True, download=True, transform=transform_train)
+    dataset = datasets.CIFAR100(root=data_loc, train=True, download=True, transform=transform_train)
     train_loader = torch.utils.data.DataLoader(dataset, shuffle=True, batch_size=batch_size, num_workers=0)
-    test_dataset = datasets.CIFAR100(root=data_loc+'cifar100', train=False, transform=transform_test)
+    test_dataset = datasets.CIFAR100(root=data_loc, train=False, transform=transform_test)
     test_loader = torch.utils.data.DataLoader(test_dataset, shuffle=False, batch_size=batch_size)
     return train_loader, test_loader
 
@@ -45,7 +45,7 @@ def svhn_data_loader(batch_size):
 
     train_loader = torch.utils.data.DataLoader(
         datasets.SVHN(
-            root=data_loc+'svhn', split='train', download=True,
+            root=data_loc, split='train', download=True,
             transform=transforms.Compose([
                 transforms.ToTensor(),
                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
@@ -54,7 +54,7 @@ def svhn_data_loader(batch_size):
         batch_size=batch_size, shuffle=True, num_workers=0)
     test_loader = torch.utils.data.DataLoader(
         datasets.SVHN(
-            root=data_loc+'svhn', split='test', download=True,
+            root=data_loc, split='test', download=True,
             transform=transforms.Compose([
                 transforms.ToTensor(),
                 transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5)),
