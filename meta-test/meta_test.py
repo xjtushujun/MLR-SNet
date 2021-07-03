@@ -14,16 +14,13 @@ def cli_def():
     parser.add_argument('--dataset', type=str, default='cifar10', choices=['cifar10', 'cifar100', 'svhn'])
     parser.add_argument('--num-epoch', type=int, default=200)
     parser.add_argument('--batch-size', type=int, default=128)
-    parser.add_argument('--optimizer', type=str, default='sgd')
     parser.add_argument('--lr', type=float, default=0.1)
-    parser.add_argument('--momentum', type=float, default=0.9)
+    parser.add_argument('--momentum', type=float, default=0.0)
     parser.add_argument('--wd', type=float, default=5e-4)
-    parser.add_argument('--seed', type=int, default=42)
-    parser.add_argument('--times', type=int, default=0)
     return parser
 
 
-def meta_test(network_name, dataset, num_epoch, batch_size, optim_name, lr, momentum, wd, model_loc, seed):
+def meta_test(network_name, dataset, num_epoch, batch_size, lr, momentum, wd):
 
     if not os.path.isdir('result'):
         os.mkdir('result')
@@ -58,7 +55,7 @@ def meta_test(network_name, dataset, num_epoch, batch_size, optim_name, lr, mome
     mlr_snet = MLRSNet(1, 50).to(device)
     print(mlr_snet)
 
-    optimizer = optim.SGD(net.parameters(), lr=lr, weight_decay=wd)
+    optimizer = optim.SGD(net.parameters(), lr=lr, momentum=momentum, weight_decay=wd)
 
     model_dict = torch.load('./mlr_snet 1.pth')
     mlr_snet.load_state_dict(model_dict)
@@ -145,5 +142,4 @@ if __name__ == '__main__':
     args = cli_def().parse_args()
     print(args)
 
-    meta_test(args.network, args.dataset, args.num_epoch, args.batch_size, args.optimizer, args.lr, args.momentum,
-                    args.wd, args.model_loc, args.seed)
+    meta_test(args.network, args.dataset, args.num_epoch, args.batch_size, args.lr, args.momentum, args.wd)
