@@ -11,9 +11,9 @@ from torch.autograd import Variable
 from torch.nn.utils import clip_grad_norm_
 import time
 from data_utils import Dictionary, Corpus
-from model.meta_language_model import RNNLM, Transformer
-from ../../meta_module.module import MLRSNet, MetaSGD
-import matplotlib.pyplot as plt
+from meta_language_model import RNNLM
+from module import MLRSNet, MetaSGD
+
 
 parser = argparse.ArgumentParser(description='PyTorch meta training example of language modeling for MLR-SNet ')
 parser.add_argument('--model', default='lstm', type=str,
@@ -61,8 +61,6 @@ def build_model(num_layers, hidden_size, vocabulary_size, embedding_size, device
     model = RNNLM(vocabulary_size, embedding_size, hidden_size=hidden_size, num_layers=num_layers)
 
     model.to(device)
-    print('Number of model parameters: {}'.format(
-        sum([p.data.nelement() for p in model.params()])))
 
     return model
 
@@ -101,7 +99,6 @@ def test(model, data, batch_size, sequence_length, vocab_size, criterion, device
 
     perp = np.exp(test_loss.item() / test_num_batches)
     print('Test Perplexity: {:5.2f}'.format(perp))
-    print('-' * 60)
     return perp
 
 
@@ -137,6 +134,8 @@ def main():
     n_layers = args.num_layers
     h_size = args.hidden_size
     model = build_model(n_layers, h_size, vocab_size, embedding_size, device)
+    print('Number of model parameters: {}'.format(
+        sum([p.data.nelement() for p in model.params()])))
 
     # build optimizer
     criterion = nn.CrossEntropyLoss().to(device)
@@ -148,7 +147,7 @@ def main():
     init_train_perp = test(model, data.train, train_bs, sequence_length, vocab_size, criterion, device)
     print('Initial training perplexity is %.3f' % init_train_perp)
 
-    gamma = (test_perp**0.5*np.log(test_perp*vocab_size)/vocab_size**0.25)/4
+    gamma = (init_train_perp**0.5*np.log(init_train_perp*vocab_size)/vocab_size**0.25)/4
     print('Gamma is %.3f' % gamma)
 
     # training
@@ -240,9 +239,8 @@ def main():
 
         if best_prep > test_perp:
             best_prep = test_perp
-
-        print('='*85)
         print('Best Test Perplexity: {:5.2f}'.format(best_prep))
+        print('-' * 60)
 
         # saving
         torch.save({'train_perplexity': train_perplexity, 'test_perplexity': test_perplexity, 'lr': lr},
