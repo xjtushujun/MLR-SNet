@@ -4,8 +4,8 @@ import os
 import torch.optim as optim
 
 from data_loader import build_dataset
-from ../../meta_module.module import MLRSNet, MetaSGD
-from model.meta_image_model import *
+from module import MLRSNet, MetaSGD
+from meta_image_model import *
 from utils import *
 
 
@@ -29,6 +29,9 @@ def meta_train():
     print(args)
     network = args.network
     dataset = args.dataset
+    batch_size = args.batch_size
+    lr = args.lr
+    num_epoch = args.num_epoch
 
     if not os.path.isdir('result'):
         os.mkdir('result')
@@ -61,12 +64,11 @@ def meta_train():
     best_val_accuracy = 0.0
 
     num_meta = 1000
-    train_data, meta_data,test_data = build_dataset(dataset, num_meta,batch_size)
+    train_data, meta_data,test_data = build_dataset(dataset, num_meta, batch_size)
     print(len(train_data),len(meta_data),len(test_data))
 
     train_loss, train_acc = compute_loss_accuracy(model, train_data, criterion, device)
     print('Initial training loss is %.3f' % train_loss)
-
 
     gamma = (train_loss**0.5*np.log(train_loss*num_classes)/num_classes**0.25)/4
     print('Gamma is %.3f' % gamma)
