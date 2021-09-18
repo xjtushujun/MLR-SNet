@@ -127,7 +127,7 @@ def meta_train():
             with torch.no_grad():
                 new_lr = mlr_snet(input)
 
-            new_lr = float(new_lr.data)
+            new_lr = float(new_lr.data)*gamma
             lr_save.append(new_lr)
 
             for group in optimizer.param_groups:
