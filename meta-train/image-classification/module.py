@@ -272,15 +272,15 @@ class MLRSNetCell(MetaModule):
 
         self.hidden_size = hidden_size
         self.fc_i2h = nn.Sequential(
-            MetaLinear(num_inputs, hidden_size),
-            nn.ReLU(),
-            MetaLinear(hidden_size, 4 * hidden_size)
-        )
+            nn.Linear(num_inputs, hidden_size // 2),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden_size // 2, 4 * hidden_size)
+                                    )
         self.fc_h2h = nn.Sequential(
-            MetaLinear(hidden_size, hidden_size),
-            nn.ReLU(),
-            MetaLinear(hidden_size, 4 * hidden_size)
-        )
+            nn.Linear(hidden_size, hidden_size // 2),
+            nn.ReLU(inplace=True),
+            nn.Linear(hidden_size // 2, 4 * hidden_size)
+                                    )
         self.init_weights()
 
     def init_weights(self):
