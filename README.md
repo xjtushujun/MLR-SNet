@@ -18,13 +18,16 @@ The learning rate (LR) is one of the most important hyperparameters in stochasti
 
 
 ## Prerequisites
-- Python 3.8 (Anaconda)
+- Python 3.7 (Anaconda)
 - PyTorch >= 1.2.0
 - Torchvision >= 0.2.1
 
 
 ## Meta-Train: adapting to the training dynamics of DNN (Section 4.1)
-
+Please use meta-train sub-folder to meta-learn the MLR-SNet meta-model. Here is an example for image-classification:
+```bash
+python meta-train.py --network resnet --dataset cifar10 --lr 1e-3
+```
 
 
 ## Meta-Test: generalization to new heterogeneous tasks (Section 4.2)
