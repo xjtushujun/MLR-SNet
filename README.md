@@ -41,6 +41,13 @@ python meta-test.py --network shufflenetv2 --dataset cifar10
 
 <img align="middle" width="100%" src="datasets.png"> 
 <img align="middle" width="100%" src="network.png"> 
+<img align="middle" width="50%" src="imagenet.png"> 
+
+We transfer learned MLR-SNet to help train ResNet-50 on ImageNet dataset and achieve the similar performance with SOTA hand-designed method.
+
+
+## License
+This project is licensed under the terms of the MIT license.
 
 
 
