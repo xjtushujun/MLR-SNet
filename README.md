@@ -28,6 +28,12 @@ Please use meta-train sub-folder to meta-learn the MLR-SNet meta-model. Here is 
 ```bash
 python meta-train.py --network resnet --dataset cifar10 --lr 1e-3
 ```
+The lr is the learning rate of Adam meta-optimizer, we suggest to set $1e-3$, which has also been used for the Adam optimizer in Pytorch. Details can refer to Section 4.1.3 and Fig.6 of the main paper.
 
 
 ## Meta-Test: generalization to new heterogeneous tasks (Section 4.2)
+Please use meta-test sub-folder to evaluate the transferability and generalization capability of the LR Schedules Meta-learned by MLR-SNe. We also provide the MLR-SNet we learned in the meta-test sub-folder. [mlr_snet 1.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%201.pth)  [mlr_snet 100.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%20100.pth) [mlr_snet 200.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%20200.pth)  Here is an example for image-classification:
+```bash
+python meta-train.py --network resnet --dataset cifar10 --lr 1e-3
+```
+The lr is the learning rate of Adam meta-optimizer, we suggest to set $1e-3$, which has also been used for the Adam optimizer in Pytorch. Details can refer to Section 4.1.3 and Fig.6 of the main paper.
