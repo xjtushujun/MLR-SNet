@@ -1,6 +1,6 @@
 # MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks
 
-This is an official PyTorch implementation of [MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks](https://arxiv.org/abs/2007.14546).
+This is an official PyTorch implementation of [MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks](https://arxiv.org/abs/2007.14546). Contact: Jun Shu (xjtushujun@gmail.com); Deyu Meng(dymeng@mail.xjtu.edu.cn).
 
 ```
 @journal{shu2021mlrsnet,
@@ -32,8 +32,12 @@ The lr is the learning rate of Adam meta-optimizer, we suggest to set $1e-3$, wh
 
 
 ## Meta-Test: generalization to new heterogeneous tasks (Section 4.2)
-Please use meta-test sub-folder to evaluate the transferability and generalization capability of the LR Schedules Meta-learned by MLR-SNe. We also provide the MLR-SNet we learned in the meta-test sub-folder. [mlr_snet 1.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%201.pth)  [mlr_snet 100.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%20100.pth) [mlr_snet 200.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%20200.pth)  Here is an example for image-classification:
+Please use meta-test sub-folder to evaluate the transferability and generalization capability of the LR Schedules Meta-learned by MLR-SNe. We also provide the MLR-SNet we learned in the meta-test sub-folder. [mlr_snet 1.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%201.pth) , [mlr_snet 100.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%20100.pth), [mlr_snet 200.pth](https://github.com/xjtushujun/MLR-SNet/blob/main/meta-test/mlr_snet%20200.pth). Here is an example for transfer learned MLR-SNet to different network architectures setting.
 ```bash
-python meta-train.py --network resnet --dataset cifar10 --lr 1e-3
+python meta-test.py --network shufflenetv2 --dataset cifar10
 ```
-The lr is the learning rate of Adam meta-optimizer, we suggest to set $1e-3$, which has also been used for the Adam optimizer in Pytorch. Details can refer to Section 4.1.3 and Fig.6 of the main paper.
+
+
+
+
+
