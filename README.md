@@ -39,7 +39,8 @@ Please use meta-test sub-folder to evaluate the transferability and generalizati
 python meta-test.py --network shufflenetv2 --dataset cifar10
 ```
 
-
+<img align="middle" width="100%" src="dataset.png"> 
+<img align="middle" width="100%" src="network.png"> 
 
 
 
