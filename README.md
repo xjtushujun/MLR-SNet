@@ -1,4 +1,4 @@
-# MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks
+# MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks (TPAMI 2022)
 
 This is an official PyTorch implementation of [MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks](https://arxiv.org/abs/2007.14546). Please contact: Jun Shu (xjtushujun@gmail.com); Deyu Meng(dymeng@mail.xjtu.edu.cn).
 
