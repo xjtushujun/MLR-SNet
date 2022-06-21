@@ -3,11 +3,15 @@
 This is an official PyTorch implementation of [MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks](https://arxiv.org/abs/2007.14546). Please contact: Jun Shu (xjtushujun@gmail.com); Deyu Meng(dymeng@mail.xjtu.edu.cn).
 
 ```
-@journal{shu2021mlrsnet,
-    title     = {MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks},
-    author    = {Shu, Jun and Zhu, Yanwen and Zhao, Qian and Meng, Deyu and Xu, Zongben},
-    year      = {2021}
-} 
+@ARTICLE{shu2021mlrsnet,
+	author={Shu, Jun and Zhu, Yanwen and Zhao, Qian and Meng, Deyu and Xu, Zongben},
+	journal={IEEE Transactions on Pattern Analysis and Machine Intelligence}, 
+	title={MLR-SNet: Transferable LR Schedules for Heterogeneous Tasks}, 
+	year={2022},
+	volume={},
+	number={},
+	pages={1-16},
+	doi={10.1109/TPAMI.2022.3184315}}
 ```
 
 ## Overview
